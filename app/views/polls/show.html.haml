@@ -27,9 +27,11 @@
                 %li= answer.title
 
       %p.btn-group.btn-group-xs
-        = link_to 'Edit', edit_poll_path(@poll), class: 'btn btn-default'
+        - if can? :edit, @poll
+          = link_to 'Edit', edit_poll_path(@poll), class: 'btn btn-default'
         = link_to 'Back', polls_path, class: 'btn btn-default'
-        = link_to 'Add Question', new_poll_question_path(@poll), class: 'btn btn-default'
+        - if can? :create_question, @poll
+          = link_to 'Add Question', new_poll_question_path(@poll), class: 'btn btn-default'
 
 
     // Replies Tab

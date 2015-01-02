@@ -44,5 +44,8 @@ module Betakix
 
     # Load PollSerializers
     config.autoload_paths += %W("#{config.root}/app/lib")
+
+    # Devise
+    config.assets.initialize_on_precompile = false
   end
 end

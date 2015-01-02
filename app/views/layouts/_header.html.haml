@@ -1,5 +1,5 @@
 %nav.navbar.navbar-default.navbar-static-top
-  .container-fluid
+  .container
     / Brand and toggle get grouped for better mobile display
     .navbar-header
       %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
@@ -34,19 +34,8 @@
             %li
               %a{:href => "#"} One more separated link
       %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{:href => "#"} Link
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
-            %span.caret
-          %ul.dropdown-menu{:role => "menu"}
-            %li
-              %a{:href => "#"} Action
-            %li
-              %a{:href => "#"} Another action
-            %li
-              %a{:href => "#"} Something else here
-            %li.divider
-            %li
-              %a{:href => "#"} Separated link
+        - if user_signed_in?
+          %li= link_to "Account Settings", edit_user_registration_path
+          %li= link_to "Log out", destroy_user_session_path, method: :delete
+        - else
+          %li= link_to "Sign in", new_user_session_path

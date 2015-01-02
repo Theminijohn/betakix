@@ -4,6 +4,7 @@ class Poll < ActiveRecord::Base
   validates :title, presence: true
 
   # Associations
+  belongs_to :user
   has_many :questions
   has_many :replies
 

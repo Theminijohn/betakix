@@ -11,9 +11,15 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
+# Authorization
+gem 'devise'
+gem 'cancancan', '~> 1.9'
+gem 'rolify'
+
 gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
+
 
 group :development, :test do
   gem 'html2haml'
