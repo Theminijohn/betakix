@@ -43,6 +43,6 @@ module Betakix
     end
 
     # Load PollSerializers
-    config.autoload_paths += %W(#{config.root}/app/lib)
+    config.autoload_paths += %W("#{config.root}/app/lib")
   end
 end
