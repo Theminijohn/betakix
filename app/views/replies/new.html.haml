@@ -1,0 +1,11 @@
+%h1= @poll.title
+
+= form_for [@poll, @reply] do |f|
+
+  .form-group
+    = f.fields_for :answers do |c|
+      .form-group
+        = render c.object.question.kind, c: c
+
+  .form-group
+    = f.submit "Finish Poll", class: 'btn btn-primary'

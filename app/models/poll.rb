@@ -5,5 +5,6 @@ class Poll < ActiveRecord::Base
 
   # Associations
   has_many :questions
+  has_many :replies
 
 end
