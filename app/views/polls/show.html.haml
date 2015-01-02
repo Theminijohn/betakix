@@ -1,19 +1,54 @@
-%p#notice= notice
-
 %p
   %h1= @poll.title
 
-%p.btn-group.btn-group-xs
-  = link_to 'Edit', edit_poll_path(@poll), class: 'btn btn-default'
-  = link_to 'Back', polls_path, class: 'btn btn-default'
-  = link_to 'Add Question', new_poll_question_path(@poll), class: 'btn btn-default'
+%div{:role => "tabpanel"}
+  / Nav tabs
+  %ul.nav.nav-tabs{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      = link_to 'Questions', '#tab-questions', data: { toggle: 'tab' } 
 
-%h2 Questions
+    %li{:role => "presentation"}
+      = link_to 'Replies', '#tab-replies', data: { toggle: 'tab' } 
 
-%ul
-  - @poll.questions.each do |question|
-    %li
-      =question.title
-      %ul 
-        - question.possible_answers.each do |answer|
-          %li= answer.title
+    %li{:role => "presentation"}
+      = link_to 'Statistics', '#tab-statistics', data: { toggle: 'tab' } 
+
+  .tab-content
+    // Questions Tab
+    #tab-questions.tab-pane.active{:role => "tabpanel"} 
+      %h2 Questions
+
+      %ul
+        - @poll.questions.each do |question|
+          %li
+            =question.title
+            %ul 
+              - question.possible_answers.each do |answer|
+                %li= answer.title
+
+      %p.btn-group.btn-group-xs
+        = link_to 'Edit', edit_poll_path(@poll), class: 'btn btn-default'
+        = link_to 'Back', polls_path, class: 'btn btn-default'
+        = link_to 'Add Question', new_poll_question_path(@poll), class: 'btn btn-default'
+
+
+    // Replies Tab
+    #tab-replies.tab-pane{:role => "tabpanel"}
+      %h2 Replies
+      - @poll.replies.each do |reply|
+        .row
+          .col-md-6
+            .panel.panel-default
+              .panel-heading.text-right
+                = time_ago_in_words reply.created_at
+                ago
+              .panel-body
+                %dl
+                  - reply.answers.each do |answer|
+                    %dt= answer.question.title
+                    %dd
+                      = answer.value.present? ? answer.value : answer.possible_answer.title
+
+    // Statistics Tab
+    #tab-statistics.tab-pane{:role => "tabpanel"} 
+      %h2 Statistics 
