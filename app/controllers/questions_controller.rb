@@ -13,6 +13,9 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @poll.questions.build 
+    5.times do 
+      @question.possible_answers.build
+    end
   end
 
   def edit
@@ -58,7 +61,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:title, :kind, :poll_id)
+      params.require(:question).permit(:title, :kind, :poll_id, possible_answers_attributes: [ :title, :question_id])
     end
 
     def set_poll

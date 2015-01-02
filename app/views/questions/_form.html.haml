@@ -12,10 +12,16 @@
 
   .form-group
     = f.label :kind
+    %br
     - @kind_options.each do |option|
       %label
         = f.radio_button :kind, option[1]
         = option[0]
+  
+  .form-group
+    = f.fields_for :possible_answers do |c|
+      %p
+        =c.text_field :title,  class: 'form-control', placeholder: 'Possible Answer'
 
   .form-group
     = f.submit 'Save', class: 'btn btn-primary'
