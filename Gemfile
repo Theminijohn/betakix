@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
 
 group :development, :test do
+  gem 'html2haml'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
